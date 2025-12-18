@@ -196,28 +196,10 @@ async function summarizeRepository(readmeContent) {
     return result;
   } catch (error) {
     console.error('Error in summarizeRepository:', error);
-    
-    // Check for credit balance errors
-    const errorMessage = error.message || '';
-    const errorString = JSON.stringify(error);
-    
-    if (errorMessage.includes('credit balance') || 
-        errorMessage.includes('too low') ||
-        errorString.includes('credit balance') ||
-        (error.error?.message && error.error.message.includes('credit balance'))) {
-      throw new Error(
-        'Insufficient API credits. Your Anthropic or OpenAI account has insufficient credits to process this request. ' +
-        'Please add credits to your API account:\n' +
-        '- Anthropic: https://console.anthropic.com/settings/billing\n' +
-        '- OpenAI: https://platform.openai.com/account/billing'
-      );
-    }
-    
     // Provide more specific error messages
     if (error.message?.includes('authentication_error') || error.message?.includes('invalid x-api-key')) {
       throw new Error(`LLM API authentication failed. Please check that your ANTHROPIC_API_KEY or OPENAI_API_KEY is valid and correctly set in .env.local`);
     }
-    
     throw error;
   }
 }
@@ -444,18 +426,12 @@ export async function POST(request) {
       summaryResult = await summarizeRepository(content);
     } catch (error) {
       console.error('Error generating summary:', error);
-      
-      // Check if it's a credit balance error
-      const errorMessage = error.message || '';
-      const isCreditError = errorMessage.includes('credit balance') || 
-                           errorMessage.includes('Insufficient API credits');
-      
       return NextResponse.json(
         { 
-          error: isCreditError ? 'Insufficient API Credits' : 'Failed to generate summary',
+          error: 'Failed to generate summary',
           message: error.message || 'Error processing README content with LLM'
         },
-        { status: isCreditError ? 402 : 500 }
+        { status: 500 }
       );
     }
 
