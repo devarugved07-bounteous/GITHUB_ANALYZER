@@ -61,29 +61,32 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       {/* Navigation */}
-      <nav className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="text-2xl font-bold text-black dark:text-zinc-50">
-                🔍 GitHub Summarizer
+      <nav className="relative border-b border-white/10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 shadow-lg">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-800/50 via-blue-800/50 to-indigo-800/50"></div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-24 items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Link href="/" className="text-3xl font-bold text-white drop-shadow-lg transition-transform hover:scale-105">
+                <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  🔍 GitHub Summarizer
+                </span>
               </Link>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               {user ? (
                 <>
-                  <div className="text-sm text-zinc-700 dark:text-zinc-300">
-                    Welcome, <span className="font-semibold">{userName}</span>
+                  <div className="text-base font-medium text-white/90 drop-shadow-md">
+                    Welcome, <span className="font-bold text-white">{userName}</span>
                   </div>
                   <Link
                     href="/dashboards"
-                    className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50"
                   >
                     API Dashboard
                   </Link>
                   <button
                     onClick={logout}
-                    className="rounded-lg px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg"
                   >
                     Logout
                   </button>
@@ -92,13 +95,13 @@ export default function Home() {
                 <>
                   <Link
                     href="/login"
-                    className="rounded-lg px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg"
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
-                    className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50"
                   >
                     Sign Up
                   </Link>
@@ -110,37 +113,40 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-300 via-blue-300 to-indigo-300 px-4 py-24 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-200/50 via-blue-200/50 to-indigo-200/50"></div>
+        <div className="relative mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-bold tracking-tight text-purple-900 drop-shadow-2xl sm:text-6xl lg:text-7xl">
               Summarize GitHub Repositories
               <br />
-              <span className="text-blue-200">with AI Power</span>
+              <span className="bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
+                with AI Power
+              </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-xl text-blue-100">
+            <p className="mx-auto mt-8 max-w-2xl text-xl text-purple-800 drop-shadow-lg">
               Get instant, comprehensive summaries and insights from any GitHub repository. 
               Powered by advanced AI to help you understand projects faster than ever.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
               {user ? (
                 <Link
                   href="/dashboards"
-                  className="rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-600 transition-all hover:scale-105 hover:shadow-xl"
+                  className="group relative rounded-xl bg-purple-700 px-10 py-5 text-lg font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50"
                 >
-                  Go to Dashboard
+                  <span className="relative z-10">Go to Dashboard</span>
                 </Link>
               ) : (
                 <>
                   <Link
                     href="/signup"
-                    className="rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-600 transition-all hover:scale-105 hover:shadow-xl"
+                    className="group relative rounded-xl bg-purple-700 px-10 py-5 text-lg font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50"
                   >
-                    Get Started Free
+                    <span className="relative z-10">Get Started Free</span>
                   </Link>
                   <Link
                     href="/login"
-                    className="rounded-lg border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10"
+                    className="rounded-xl border-2 border-purple-600 bg-purple-600 px-10 py-5 text-lg font-bold text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-purple-700 hover:shadow-xl"
                   >
                     Sign In
                   </Link>
@@ -152,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="border-b border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-zinc-900">
+      <section className="border-b border-zinc-200 bg-gradient-to-br from-white via-blue-50 to-purple-50 py-16 dark:border-zinc-800 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat, index) => (
@@ -170,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* API Example Section */}
-      <section className="bg-zinc-50 py-20 dark:bg-black">
+      <section className="bg-gradient-to-br from-zinc-50 via-white to-purple-50/30 py-20 dark:bg-gradient-to-br dark:from-black dark:via-zinc-900 dark:to-black">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-black dark:text-zinc-50">
@@ -248,7 +254,7 @@ Body:
       </section>
 
       {/* Features Section */}
-      <section className="bg-white py-20 dark:bg-zinc-900">
+      <section className="bg-gradient-to-br from-zinc-50 via-white to-blue-50 py-20 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-black dark:text-zinc-50">
@@ -263,13 +269,14 @@ Body:
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="rounded-lg border border-zinc-200 bg-zinc-50 p-6 transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800"
+                className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-gradient-to-br from-white to-blue-50/50 p-6 shadow-md transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 dark:border-zinc-700 dark:from-zinc-800 dark:to-zinc-900"
               >
-                <div className="text-4xl">{feature.icon}</div>
-                <h3 className="mt-4 text-xl font-semibold text-black dark:text-zinc-50">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                <div className="relative text-5xl transition-transform group-hover:scale-110">{feature.icon}</div>
+                <h3 className="relative mt-4 text-xl font-semibold text-black dark:text-zinc-50">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+                <p className="relative mt-2 text-zinc-600 dark:text-zinc-400">
                   {feature.description}
                 </p>
               </div>
@@ -279,7 +286,7 @@ Body:
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20 dark:from-zinc-900 dark:to-zinc-800">
+      <section className="bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 py-20 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
@@ -313,12 +320,13 @@ Body:
               </ul>
             </div>
             <div className="flex items-center justify-center">
-              <div className="rounded-lg bg-white p-8 shadow-xl dark:bg-zinc-800">
-                <div className="text-center">
-                  <div className="text-6xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-blue-50 to-purple-50 p-10 shadow-2xl dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
+                <div className="relative text-center">
+                  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-7xl font-bold text-transparent dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
                     10x
                   </div>
-                  <div className="mt-4 text-xl font-semibold text-black dark:text-zinc-50">
+                  <div className="mt-4 text-2xl font-bold text-black dark:text-zinc-50">
                     Faster Research
                   </div>
                   <p className="mt-2 text-zinc-600 dark:text-zinc-400">
@@ -332,33 +340,36 @@ Body:
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-20">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white">
+      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/50 via-purple-500/50 to-indigo-500/50"></div>
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-5xl font-bold text-white drop-shadow-2xl">
             Ready to Get Started?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-blue-100">
+          <p className="mx-auto mt-6 max-w-2xl text-xl text-blue-100 drop-shadow-lg">
             Join thousands of developers who are already using GitHub Summarizer to understand repositories faster.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             {user ? (
               <Link
                 href="/dashboards"
-                className="rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-600 transition-all hover:scale-105 hover:shadow-xl"
+                className="group relative rounded-xl bg-white px-10 py-5 text-lg font-bold text-blue-600 shadow-2xl transition-all hover:scale-110 hover:shadow-blue-500/50"
               >
-                Go to API Dashboard
+                <span className="relative z-10">Go to API Dashboard</span>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 transition-opacity group-hover:opacity-20"></div>
               </Link>
             ) : (
               <>
                 <Link
                   href="/signup"
-                  className="rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-600 transition-all hover:scale-105 hover:shadow-xl"
+                  className="group relative rounded-xl bg-white px-10 py-5 text-lg font-bold text-blue-600 shadow-2xl transition-all hover:scale-110 hover:shadow-blue-500/50"
                 >
-                  Create Free Account
+                  <span className="relative z-10">Create Free Account</span>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 transition-opacity group-hover:opacity-20"></div>
                 </Link>
                 <Link
                   href="/login"
-                  className="rounded-lg border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10"
+                  className="rounded-xl border-2 border-white/50 bg-white/10 px-10 py-5 text-lg font-bold text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 hover:shadow-xl"
                 >
                   Sign In to Dashboard
                 </Link>
