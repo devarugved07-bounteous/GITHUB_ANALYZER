@@ -438,7 +438,7 @@ Body:
             </div>
           </div>
           <div className="mt-8 border-t border-zinc-200 pt-8 text-center text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">
-            <p>© 2024 GitHub Summarizer. All rights reserved.</p>
+            <p>© 2025 GitHub Summarizer. All rights reserved.</p>
           </div>
         </div>
       </footer>
