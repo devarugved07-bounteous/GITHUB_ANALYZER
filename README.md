@@ -1,10 +1,10 @@
 # 🔍 GitHub Summarizer
 
-An AI-powered platform that provides comprehensive summaries and insights for any GitHub repository. Built with Next.js, this application leverages advanced AI models (Anthropic Claude or OpenAI GPT) to help developers understand complex projects in minutes instead of hours.
+An AI-powered platform that provides comprehensive summaries and insights for any GitHub repository. Built with Next.js, this application leverages advanced AI models (Anthropic Claude, OpenAI GPT, or Google Gemini) to help developers understand complex projects in minutes instead of hours.
 
 ## ✨ Features
 
-- **🤖 AI-Powered Summaries**: Get comprehensive summaries of any GitHub repository using advanced AI models (Claude 3.5 Sonnet or GPT-4o)
+- **🤖 AI-Powered Summaries**: Get comprehensive summaries of any GitHub repository using advanced AI models (Claude 3.5 Sonnet, GPT-4o, or Gemini 2.0 Flash)
 - **✨ Cool Facts Discovery**: Automatically uncover interesting facts and insights about repositories
 - **🔒 Secure API Access**: Manage your API keys securely with a comprehensive dashboard
 - **📊 Usage Tracking**: Monitor API key usage and rate limits
@@ -19,7 +19,7 @@ An AI-powered platform that provides comprehensive summaries and insights for an
 - **UI Library**: React 19.2.0
 - **Styling**: Tailwind CSS 4
 - **Database**: Supabase (PostgreSQL)
-- **AI/LLM**: LangChain with Anthropic Claude or OpenAI GPT
+- **AI/LLM**: LangChain with Anthropic Claude, OpenAI GPT, or Google Gemini
 - **Authentication**: JWT (jsonwebtoken) + bcryptjs
 - **Validation**: Zod
 
@@ -29,7 +29,7 @@ Before you begin, ensure you have the following installed:
 
 - Node.js 18+ and npm
 - A Supabase account and project
-- An Anthropic API key OR an OpenAI API key
+- An Anthropic API key, OpenAI API key, OR Google Gemini API key (at least one required)
 
 ## 🛠️ Installation
 
@@ -55,6 +55,8 @@ Before you begin, ensure you have the following installed:
    ANTHROPIC_API_KEY=your_anthropic_api_key
    # OR
    OPENAI_API_KEY=your_openai_api_key
+   # OR
+   GEMINI_API_KEY=your_gemini_api_key
    
    # JWT Secret (for authentication)
    JWT_SECRET=your_jwt_secret_key
@@ -240,8 +242,10 @@ Required environment variables:
 
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anonymous key
-- `ANTHROPIC_API_KEY` OR `OPENAI_API_KEY` - At least one AI provider API key
+- `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, OR `GEMINI_API_KEY` - At least one AI provider API key required
 - `JWT_SECRET` - Secret key for JWT token signing
+
+**Note**: The application will use AI models in the following priority order: Anthropic Claude (if `ANTHROPIC_API_KEY` is set) → OpenAI GPT (if `OPENAI_API_KEY` is set) → Google Gemini (if `GEMINI_API_KEY` is set). You only need to set one API key, but you can set multiple if you want fallback options.
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { ChatOpenAI } from '@langchain/openai';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { z } from 'zod';
 
@@ -146,10 +147,11 @@ async function summarizeRepository(readmeContent) {
       cool_facts: z.array(z.string()).describe('A list of interesting or notable facts about the repository')
     });
 
-    // Initialize LLM - try Anthropic first, fallback to OpenAI
+    // Initialize LLM - try Anthropic first, then OpenAI, then Gemini
     let llm;
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
     const openaiApiKey = process.env.OPENAI_API_KEY;
+    const geminiApiKey = process.env.GEMINI_API_KEY;
 
     // Add validation and better error messages
     if (anthropicApiKey && anthropicApiKey.trim()) {
@@ -176,8 +178,20 @@ async function summarizeRepository(readmeContent) {
         console.error('Error initializing OpenAI LLM:', error);
         throw new Error(`Failed to initialize OpenAI LLM: ${error.message}`);
       }
+    } else if (geminiApiKey && geminiApiKey.trim()) {
+      try {
+        llm = new ChatGoogleGenerativeAI({
+          model: 'models/gemini-flash-lite-latest',
+          temperature: 0.0,
+          apiKey: geminiApiKey.trim(),
+        });
+        console.log('Using Google Gemini model');
+      } catch (error) {
+        console.error('Error initializing Gemini LLM:', error);
+        throw new Error(`Failed to initialize Gemini LLM: ${error.message}`);
+      }
     } else {
-      throw new Error('No LLM API key found. Please set ANTHROPIC_API_KEY or OPENAI_API_KEY environment variable in your .env.local file');
+      throw new Error('No LLM API key found. Please set ANTHROPIC_API_KEY, OPENAI_API_KEY, or GEMINI_API_KEY environment variable in your .env.local file');
     }
 
     // Create prompt template
@@ -198,7 +212,7 @@ async function summarizeRepository(readmeContent) {
     console.error('Error in summarizeRepository:', error);
     // Provide more specific error messages
     if (error.message?.includes('authentication_error') || error.message?.includes('invalid x-api-key')) {
-      throw new Error(`LLM API authentication failed. Please check that your ANTHROPIC_API_KEY or OPENAI_API_KEY is valid and correctly set in .env.local`);
+      throw new Error(`LLM API authentication failed. Please check that your ANTHROPIC_API_KEY, OPENAI_API_KEY, or GEMINI_API_KEY is valid and correctly set in .env.local`);
     }
     throw error;
   }
