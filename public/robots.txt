@@ -1,0 +1,18 @@
+# robots.txt for GitHub Summarizer
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes from being indexed
+Disallow: /api/
+Disallow: /protected/
+Disallow: /login
+Disallow: /signup
+
+# Allow important pages
+Allow: /
+Allow: /documentation
+Allow: /playground
+Allow: /dashboards
+
+# Sitemap location
+Sitemap: https://github-analyzer-omega.vercel.app/sitemap.xml

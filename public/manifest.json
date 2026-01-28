@@ -1,0 +1,17 @@
+{
+  "name": "GitHub Summarizer - AI-Powered Repository Analysis",
+  "short_name": "GitHub Summarizer",
+  "description": "Get instant, comprehensive summaries and insights from any GitHub repository using AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
