@@ -333,8 +333,8 @@ export async function POST(request) {
       request.headers.get('API-Key');
 
     // Debug logging (remove in production)
-    console.log('API Key received:', apiKey ? `${apiKey.substring(0, 8)}...` : 'NOT PROVIDED');
-    console.log('All headers:', Object.fromEntries(request.headers.entries()));
+    // console.log('API Key received:', apiKey ? `${apiKey.substring(0, 8)}...` : 'NOT PROVIDED');
+    // console.log('All headers:', Object.fromEntries(request.headers.entries()));
 
     if (!apiKey) {
       return NextResponse.json(

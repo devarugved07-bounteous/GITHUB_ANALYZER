@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -49,12 +50,92 @@ export default function Home() {
   const router = useRouter();
   const userName = user?.name || user?.email?.split("@")[0] || "User";
 
+  // State for editable API code
+  const [apiCode, setApiCode] = useState(`POST /api/github-summarizer
+Headers:
+  x-api-key: your-api-key
+
+Body:
+{
+  "githubUrl": "https://github.com/assafelovic/gpt-researcher"
+}`);
+  
+  const [apiResponse, setApiResponse] = useState(null);
+  const [isExecuting, setIsExecuting] = useState(false);
+  const [executionError, setExecutionError] = useState(null);
+
   const handleTryItOut = (e) => {
     e.preventDefault();
     if (user) {
       router.push("/playground");
     } else {
       router.push("/login");
+    }
+  };
+
+  // Parse API key and GitHub URL from the code
+  const parseApiCode = (code) => {
+    const apiKeyMatch = code.match(/x-api-key:\s*(.+)/i);
+    const githubUrlMatch = code.match(/"githubUrl":\s*"([^"]+)"/);
+    
+    return {
+      apiKey: apiKeyMatch ? apiKeyMatch[1].trim() : null,
+      githubUrl: githubUrlMatch ? githubUrlMatch[1].trim() : null,
+    };
+  };
+
+  // Execute the API call
+  const handleExecuteApi = async () => {
+    setIsExecuting(true);
+    setExecutionError(null);
+    setApiResponse(null);
+
+    try {
+      const { apiKey, githubUrl } = parseApiCode(apiCode);
+
+      if (!apiKey || apiKey === "your-api-key") {
+        setExecutionError("Please provide a valid API key in the code");
+        setIsExecuting(false);
+        return;
+      }
+
+      if (!githubUrl) {
+        setExecutionError("Please provide a valid GitHub URL in the code");
+        setIsExecuting(false);
+        return;
+      }
+
+      const response = await fetch("/api/github-summarizer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+        },
+        body: JSON.stringify({
+          githubUrl: githubUrl,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setExecutionError(data.error || data.message || "Request failed");
+        setApiResponse({
+          error: data.error || "Request failed",
+          message: data.message,
+          status: response.status,
+        });
+      } else {
+        setApiResponse(data);
+      }
+    } catch (err) {
+      setExecutionError(err.message || "Network error occurred");
+      setApiResponse({
+        error: "Network error",
+        message: err.message || "Failed to connect to the server",
+      });
+    } finally {
+      setIsExecuting(false);
     }
   };
 
@@ -199,28 +280,87 @@ export default function Home() {
                 </p>
               </div>
               <div className="p-6">
-                <pre className="overflow-x-auto rounded-lg bg-zinc-900 p-4 text-sm text-green-400">
-{`POST /api/github-summarizer
-Headers:
-  x-api-key: your-api-key
-
-Body:
-{
-  "githubUrl": "https://github.com/assafelovic/gpt-researcher"
-}`}
-                </pre>
+                <textarea
+                  value={apiCode}
+                  onChange={(e) => setApiCode(e.target.value)}
+                  className="w-full min-h-[200px] resize-none rounded-lg bg-zinc-900 p-4 font-mono text-sm text-green-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-900"
+                  spellCheck={false}
+                  placeholder="Edit the API request code here..."
+                />
+                {executionError && (
+                  <div className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-400">
+                    {executionError}
+                  </div>
+                )}
               </div>
               <div className="border-t border-zinc-200 px-6 py-4 dark:border-zinc-700">
                 <div className="flex gap-3">
+                  <button
+                    onClick={handleExecuteApi}
+                    disabled={isExecuting}
+                    className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-green-500 dark:hover:bg-green-600"
+                  >
+                    {isExecuting ? (
+                      <>
+                        <svg
+                          className="h-4 w-4 animate-spin"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Running...
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          className="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        Run Request
+                      </>
+                    )}
+                  </button>
                   <button
                     onClick={handleTryItOut}
                     className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-600"
                   >
                     Try it out
                   </button>
-                  <button className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-zinc-700">
+                  <Link
+                    href="/documentation"
+                    className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-zinc-700"
+                  >
                     Documentation
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -236,7 +376,12 @@ Body:
                 </p>
               </div>
               <div className="p-6">
-                <pre className="max-h-96 overflow-y-auto rounded-lg bg-zinc-900 p-4 text-sm text-green-400">
+                {apiResponse ? (
+                  <pre className="max-h-96 overflow-y-auto rounded-lg bg-zinc-900 p-4 text-sm text-green-400">
+                    {JSON.stringify(apiResponse, null, 2)}
+                  </pre>
+                ) : (
+                  <pre className="max-h-96 overflow-y-auto rounded-lg bg-zinc-900 p-4 text-sm text-zinc-500">
 {`{
   "summary": "GPT Researcher is an autonomous agent designed for comprehensive online research on various tasks. It aims to provide detailed, factual, and unbiased research reports by leveraging AI technology...",
   "cool_facts": [
@@ -246,7 +391,13 @@ Body:
     "Open-source and community-driven development"
   ]
 }`}
-                </pre>
+                  </pre>
+                )}
+                {!apiResponse && (
+                  <p className="mt-3 text-center text-sm text-zinc-500 dark:text-zinc-400">
+                    Click "Run Request" to see the actual API response
+                  </p>
+                )}
               </div>
             </div>
           </div>
