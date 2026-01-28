@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { useSnowfall } from "@/contexts/SnowfallContext";
 
 const navigationItems = [
   {
@@ -73,6 +74,7 @@ const navigationItems = [
 export default function Sidebar({ isOpen, onClose }) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
+  const { isSnowing, toggleSnowfall } = useSnowfall();
 
   return (
     <>
@@ -127,6 +129,33 @@ export default function Sidebar({ isOpen, onClose }) {
               );
             })}
           </nav>
+
+          {/* Let it Snow Toggle */}
+          <div className="border-t border-zinc-800 px-4 py-4">
+            <button
+              onClick={toggleSnowfall}
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                isSnowing
+                  ? "bg-blue-600 text-white"
+                  : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
+              }`}
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+              <span>Let it snow</span>
+            </button>
+          </div>
 
           {/* User Info and Logout */}
           <div className="border-t border-zinc-800 px-4 py-4">

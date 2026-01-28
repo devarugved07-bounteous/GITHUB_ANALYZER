@@ -1,7 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SnowfallProvider } from "@/contexts/SnowfallContext";
 import ColorSchemeHandler from "@/components/ColorSchemeHandler";
+import SnowfallWrapper from "@/components/SnowfallWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +46,10 @@ export default function RootLayout({ children }) {
         />
         <ColorSchemeHandler />
         <AuthProvider>
-          {children}
+          <SnowfallProvider>
+            <SnowfallWrapper />
+            {children}
+          </SnowfallProvider>
         </AuthProvider>
       </body>
     </html>
