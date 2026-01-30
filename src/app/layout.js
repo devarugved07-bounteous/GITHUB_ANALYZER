@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+};
+
 export const metadata = {
   metadataBase: new URL("https://github-analyzer-omega.vercel.app"),
   title: {
@@ -87,8 +94,8 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   other: {
     "color-scheme": "light",

@@ -55,12 +55,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black px-4">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 py-6 dark:bg-black">
       <Toast toast={toast} onClose={hideToast} />
       <div className="w-full max-w-md">
-        <div className="rounded-lg bg-white p-8 shadow-lg dark:bg-zinc-900">
-          <div className="mb-6 flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-black dark:text-zinc-50">
+        <div className="rounded-lg bg-white p-5 shadow-lg dark:bg-zinc-900 sm:p-8">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h1 className="text-2xl font-bold text-black dark:text-zinc-50 sm:text-3xl">
               Sign Up
             </h1>
             <Link

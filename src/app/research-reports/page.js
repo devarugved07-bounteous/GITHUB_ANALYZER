@@ -94,13 +94,13 @@ export default function ResearchReportsPage() {
             isSidebarOpen ? "lg:ml-64" : "ml-0"
           }`}
         >
-          <div className="px-4 py-4 sm:px-6 lg:px-8 lg:py-8">
+          <div className="px-3 py-4 sm:px-6 lg:px-8 lg:py-8">
             {/* Header */}
-            <div className="mb-8 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 sm:mb-8">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <button
                   onClick={toggleSidebar}
-                  className="rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+                  className="min-h-[44px] min-w-[44px] rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
                   aria-label="Toggle sidebar"
                 >
                   {isSidebarOpen ? (
@@ -113,7 +113,7 @@ export default function ResearchReportsPage() {
                     </svg>
                   )}
                 </button>
-                <h1 className="text-3xl font-bold text-black dark:text-zinc-50">
+                <h1 className="truncate text-xl font-bold text-black dark:text-zinc-50 sm:text-2xl md:text-3xl">
                   Research Reports
                 </h1>
               </div>

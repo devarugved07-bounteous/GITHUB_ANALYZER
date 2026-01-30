@@ -109,13 +109,13 @@ export default function DashboardsPage() {
           isSidebarOpen ? "lg:ml-64" : "ml-0"
         }`}
       >
-        <div className="px-4 py-4 sm:px-6 lg:px-8 lg:py-8">
+        <div className="px-3 py-4 sm:px-6 lg:px-8 lg:py-8">
           {/* Header with Toggle Button and Back Button */}
-          <div className="mb-8 flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 sm:mb-8">
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-4">
               <button
                 onClick={toggleSidebar}
-                className="rounded-lg p-2 text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+                className="min-h-[44px] min-w-[44px] flex-shrink-0 rounded-lg p-2 text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
                 aria-label="Toggle sidebar"
               >
                 {isSidebarOpen ? (
@@ -150,10 +150,10 @@ export default function DashboardsPage() {
               </button>
               <button
                 onClick={() => router.push("/")}
-                className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-all hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+                className="group flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-all hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
               >
                 <svg
-                  className="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
+                  className="h-4 w-4 flex-shrink-0 transition-transform group-hover:-translate-x-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -165,10 +165,10 @@ export default function DashboardsPage() {
                     d="M10 19l-7-7m0 0l7-7m-7 7h18"
                   />
                 </svg>
-                <span>Back to Home</span>
+                <span className="hidden sm:inline">Back to Home</span>
               </button>
-              <div className="h-6 w-px bg-zinc-300 dark:bg-zinc-700" />
-              <h1 className="text-3xl font-bold text-black dark:text-zinc-50">
+              <div className="hidden h-6 w-px bg-zinc-300 sm:block dark:bg-zinc-700" />
+              <h1 className="truncate text-xl font-bold text-black dark:text-zinc-50 sm:text-2xl md:text-3xl">
                 Overview
               </h1>
             </div>
@@ -183,12 +183,12 @@ export default function DashboardsPage() {
 
           {/* API Keys Section */}
           <div className="mb-8">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-bold text-black dark:text-zinc-50">
+            <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <h2 className="text-lg font-bold text-black dark:text-zinc-50 sm:text-xl">
                   API Keys
                 </h2>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 sm:text-sm">
                   The key is used to authenticate your requests to the API. To
                   learn more, see the documentation page.
                 </p>
@@ -196,7 +196,7 @@ export default function DashboardsPage() {
               <button
                 onClick={() => handleOpenModal()}
                 disabled={loading}
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-blue-500 dark:hover:bg-blue-600"
+                className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto dark:bg-blue-500 dark:hover:bg-blue-600"
               >
                 <svg
                   className="h-4 w-4"

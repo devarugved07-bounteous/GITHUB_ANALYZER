@@ -93,13 +93,13 @@ export default function ProfilePage() {
             isSidebarOpen ? "lg:ml-64" : "ml-0"
           }`}
         >
-          <div className="px-4 py-4 sm:px-6 lg:px-8 lg:py-8">
+          <div className="px-3 py-4 sm:px-6 lg:px-8 lg:py-8">
             {/* Header */}
-            <div className="mb-8 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 sm:mb-8">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <button
                   onClick={toggleSidebar}
-                  className="rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+                  className="min-h-[44px] min-w-[44px] rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
                   aria-label="Toggle sidebar"
                 >
                   {isSidebarOpen ? (
@@ -132,24 +132,24 @@ export default function ProfilePage() {
                     </svg>
                   )}
                 </button>
-                <h1 className="text-3xl font-bold text-black dark:text-zinc-50">
+                <h1 className="truncate text-xl font-bold text-black dark:text-zinc-50 sm:text-2xl md:text-3xl">
                   Welcome, {userName}!
                 </h1>
               </div>
             </div>
 
             {/* Profile Card */}
-            <div className="mb-8 overflow-hidden rounded-lg bg-white shadow dark:bg-zinc-800">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-8">
-                <div className="flex items-center gap-6">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 text-3xl font-bold text-white backdrop-blur-sm">
+            <div className="mb-6 overflow-hidden rounded-lg bg-white shadow dark:bg-zinc-800 sm:mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-6 sm:px-6 sm:py-8">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-2xl font-bold text-white backdrop-blur-sm sm:h-20 sm:w-20 sm:text-3xl">
                     {userInitials}
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-white">
+                  <div className="min-w-0 flex-1">
+                    <h2 className="truncate text-xl font-bold text-white sm:text-2xl">
                       {user.name || "User"}
                     </h2>
-                    <p className="text-blue-100">{user.email}</p>
+                    <p className="truncate text-sm text-blue-100 sm:text-base">{user.email}</p>
                     <p className="mt-1 text-sm text-blue-200">
                       Member since {new Date(user.created_at).toLocaleDateString("en-US", {
                         month: "long",

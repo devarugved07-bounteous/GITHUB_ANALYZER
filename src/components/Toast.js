@@ -115,9 +115,9 @@ export default function Toast({ toast, onClose }) {
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 min-w-[320px] max-w-md transition-all duration-300 ease-out ${
+      className={`fixed left-4 right-4 top-4 z-50 min-w-0 max-w-md transition-all duration-300 ease-out sm:left-auto sm:right-4 sm:min-w-[320px] ${
         isExiting
-          ? "translate-x-full opacity-0"
+          ? "translate-x-full opacity-0 sm:translate-x-full"
           : "translate-x-0 opacity-100"
       }`}
     >

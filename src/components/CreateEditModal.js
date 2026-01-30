@@ -14,8 +14,8 @@ export default function CreateEditModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl dark:bg-zinc-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-3 sm:p-4">
+      <div className="my-auto w-full max-w-md rounded-lg bg-white p-4 shadow-xl dark:bg-zinc-900 sm:p-6">
         <h2 className="mb-4 text-xl font-bold text-black dark:text-zinc-50">
           {editingKey ? "Edit API Key" : "Create New API Key"}
         </h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSnowfall } from "@/contexts/SnowfallContext";
@@ -80,14 +81,23 @@ export default function Sidebar({ isOpen, onClose }) {
     <>
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-40 h-screen bg-zinc-900 text-white transition-transform duration-300 ease-in-out ${
+        className={`fixed left-0 top-0 z-40 h-screen w-[min(16rem,85vw)] max-w-64 bg-zinc-900 text-white transition-transform duration-300 ease-in-out pl-[env(safe-area-inset-left)] ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } w-64`}
+        }`}
       >
         <div className="flex h-full flex-col">
           {/* Logo with Close Button */}
-          <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-6">
-            <h1 className="text-xl font-bold">API Keys Manager</h1>
+          <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-5 sm:px-6 sm:py-6">
+            <Link href="/dashboards" className="flex items-center gap-2">
+              <Image
+                src="/logo.svg"
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7 flex-shrink-0 brightness-0 invert"
+              />
+              <h1 className="text-lg font-bold text-white sm:text-xl">API Keys Manager</h1>
+            </Link>
             <button
               onClick={onClose}
               className="lg:hidden rounded-lg p-1 text-zinc-400 hover:bg-zinc-800 hover:text-white"
@@ -117,7 +127,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`flex min-h-[44px] items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-purple-600 text-white"
                       : "text-zinc-300 hover:bg-zinc-800 hover:text-white"

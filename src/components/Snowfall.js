@@ -11,9 +11,10 @@ export default function Snowfall({ isActive }) {
       return;
     }
 
-    // Create snowflakes
+    // Create snowflakes (fewer on small screens for performance)
     const createSnowflakes = () => {
-      const count = 500; // Number of snowflakes - increased for full screen coverage
+      const isNarrow = typeof window !== "undefined" && window.innerWidth < 768;
+      const count = isNarrow ? 120 : 500;
       const flakes = Array.from({ length: count }, (_, i) => ({
         id: i,
         left: Math.random() * 100, // Distribute across full width

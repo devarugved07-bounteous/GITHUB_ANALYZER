@@ -144,30 +144,37 @@ Body:
       {/* Navigation */}
       <nav className="relative border-b border-white/10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 shadow-lg">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-800/50 via-blue-800/50 to-indigo-800/50"></div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-24 items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Link href="/" className="text-3xl font-bold text-white drop-shadow-lg transition-transform hover:scale-105">
+        <div className="relative mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          <div className="flex min-h-14 sm:h-24 flex-wrap items-center justify-between gap-3 py-3 sm:py-0">
+            <div className="flex min-w-0 flex-shrink-0 items-center gap-2">
+              <Link href="/" className="flex items-center gap-2 truncate text-xl font-bold text-white drop-shadow-lg transition-transform hover:scale-105 sm:text-2xl md:text-3xl">
+                <Image
+                  src="/logo.svg"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 flex-shrink-0 brightness-0 invert sm:h-9 sm:w-9"
+                />
                 <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                  🔍 GitHub Summarizer
+                  GitHub Summarizer
                 </span>
               </Link>
             </div>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-4 md:gap-5">
               {user ? (
                 <>
-                  <div className="text-base font-medium text-white/90 drop-shadow-md">
+                  <div className="hidden text-base font-medium text-white/90 drop-shadow-md md:block">
                     Welcome, <span className="font-bold text-white">{userName}</span>
                   </div>
                   <Link
                     href="/dashboards"
-                    className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50"
+                    className="min-h-[44px] rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50 sm:px-6 sm:py-3 sm:text-base"
                   >
                     API Dashboard
                   </Link>
                   <button
                     onClick={logout}
-                    className="rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg"
+                    className="min-h-[44px] rounded-xl border-2 border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
                   >
                     Logout
                   </button>
@@ -176,13 +183,13 @@ Body:
                 <>
                   <Link
                     href="/login"
-                    className="rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg"
+                    className="min-h-[44px] rounded-xl border-2 border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20 hover:shadow-lg sm:px-6 sm:py-3 sm:text-base"
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
-                    className="rounded-xl bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50"
+                    className="min-h-[44px] rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl hover:bg-blue-50 sm:px-6 sm:py-3 sm:text-base"
                   >
                     Sign Up
                   </Link>
@@ -194,26 +201,26 @@ Body:
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-300 via-blue-300 to-indigo-300 px-4 py-24 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-300 via-blue-300 to-indigo-300 px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-200/50 via-blue-200/50 to-indigo-200/50"></div>
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="text-5xl font-bold tracking-tight text-purple-900 drop-shadow-2xl sm:text-6xl lg:text-7xl">
+            <h1 className="text-3xl font-bold tracking-tight text-purple-900 drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
               Summarize GitHub Repositories
               <br />
               <span className="bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
                 with AI Power
               </span>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-xl text-purple-800 drop-shadow-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-purple-800 drop-shadow-lg sm:mt-6 sm:text-lg md:mt-8 md:text-xl">
               Get instant, comprehensive summaries and insights from any GitHub repository. 
               Powered by advanced AI to help you understand projects faster than ever.
             </p>
-            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
               {user ? (
                 <Link
                   href="/dashboards"
-                  className="group relative rounded-xl bg-purple-700 px-10 py-5 text-lg font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50"
+                  className="group relative min-h-[44px] rounded-xl bg-purple-700 px-6 py-3 text-base font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50 sm:px-10 sm:py-5 sm:text-lg"
                 >
                   <span className="relative z-10">Go to Dashboard</span>
                 </Link>
@@ -221,13 +228,13 @@ Body:
                 <>
                   <Link
                     href="/signup"
-                    className="group relative rounded-xl bg-purple-700 px-10 py-5 text-lg font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50"
+                    className="group relative min-h-[44px] rounded-xl bg-purple-700 px-6 py-3 text-base font-bold text-white shadow-2xl transition-all hover:scale-110 hover:bg-purple-800 hover:shadow-purple-500/50 sm:px-10 sm:py-5 sm:text-lg"
                   >
                     <span className="relative z-10">Get Started Free</span>
                   </Link>
                   <Link
                     href="/login"
-                    className="rounded-xl border-2 border-purple-600 bg-purple-600 px-10 py-5 text-lg font-bold text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-purple-700 hover:shadow-xl"
+                    className="min-h-[44px] rounded-xl border-2 border-purple-600 bg-purple-600 px-6 py-3 text-base font-bold text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-purple-700 hover:shadow-xl sm:px-10 sm:py-5 sm:text-lg"
                   >
                     Sign In
                   </Link>
@@ -239,15 +246,15 @@ Body:
       </section>
 
       {/* Stats Section */}
-      <section className="border-b border-zinc-200 bg-gradient-to-br from-white via-blue-50 to-purple-50 py-16 dark:border-zinc-800 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
+      <section className="border-b border-zinc-200 bg-gradient-to-br from-white via-blue-50 to-purple-50 py-8 dark:border-zinc-800 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 sm:py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4 md:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 sm:text-3xl">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <div className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 sm:mt-2 sm:text-sm">
                   {stat.label}
                 </div>
               </div>
@@ -257,18 +264,18 @@ Body:
       </section>
 
       {/* API Example Section */}
-      <section className="bg-gradient-to-br from-zinc-50 via-white to-purple-50/30 py-20 dark:bg-gradient-to-br dark:from-black dark:via-zinc-900 dark:to-black">
+      <section className="bg-gradient-to-br from-zinc-50 via-white to-purple-50/30 py-10 dark:bg-gradient-to-br dark:from-black dark:via-zinc-900 dark:to-black sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-black dark:text-zinc-50">
+            <h2 className="text-2xl font-bold text-black dark:text-zinc-50 sm:text-3xl md:text-4xl">
               See It In Action
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+            <p className="mx-auto mt-3 max-w-2xl text-base text-zinc-600 dark:text-zinc-400 sm:mt-4 sm:text-lg">
               Simple API request, powerful results. Just send a GitHub URL and get comprehensive insights.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <div className="mt-8 grid gap-6 sm:mt-12 lg:grid-cols-2">
             {/* API Request */}
             <div className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
               <div className="border-b border-zinc-200 bg-zinc-50 px-6 py-4 dark:border-zinc-700 dark:bg-zinc-900">
@@ -293,8 +300,8 @@ Body:
                   </div>
                 )}
               </div>
-              <div className="border-t border-zinc-200 px-6 py-4 dark:border-zinc-700">
-                <div className="flex gap-3">
+              <div className="border-t border-zinc-200 px-4 py-4 dark:border-zinc-700 sm:px-6">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   <button
                     onClick={handleExecuteApi}
                     disabled={isExecuting}
@@ -405,18 +412,18 @@ Body:
       </section>
 
       {/* Features Section */}
-      <section className="bg-gradient-to-br from-zinc-50 via-white to-blue-50 py-20 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
+      <section className="bg-gradient-to-br from-zinc-50 via-white to-blue-50 py-10 dark:bg-gradient-to-br dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-black dark:text-zinc-50">
+            <h2 className="text-2xl font-bold text-black dark:text-zinc-50 sm:text-3xl md:text-4xl">
               Powerful Features
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+            <p className="mx-auto mt-3 max-w-2xl text-base text-zinc-600 dark:text-zinc-400 sm:mt-4 sm:text-lg">
               Everything you need to understand GitHub repositories at a glance
             </p>
           </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
               <div
                 key={index}
@@ -437,14 +444,14 @@ Body:
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 py-20 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
+      <section className="bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 py-10 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
-              <h2 className="text-4xl font-bold text-black dark:text-zinc-50">
+              <h2 className="text-2xl font-bold text-black dark:text-zinc-50 sm:text-3xl md:text-4xl">
                 Why Choose GitHub Summarizer?
               </h2>
-              <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+              <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400 sm:mt-4 sm:text-lg">
                 Our platform combines the power of AI with intuitive design to help developers, researchers, and teams understand GitHub repositories faster and more effectively.
               </p>
               <ul className="mt-8 space-y-4">
@@ -471,16 +478,16 @@ Body:
               </ul>
             </div>
             <div className="flex items-center justify-center">
-              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white via-blue-50 to-purple-50 p-10 shadow-2xl dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800">
+              <div className="relative w-full max-w-sm overflow-hidden rounded-xl bg-gradient-to-br from-white via-blue-50 to-purple-50 p-6 shadow-2xl dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800 sm:p-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
                 <div className="relative text-center">
-                  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-7xl font-bold text-transparent dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
+                  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-5xl font-bold text-transparent sm:text-6xl md:text-7xl dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
                     10x
                   </div>
-                  <div className="mt-4 text-2xl font-bold text-black dark:text-zinc-50">
+                  <div className="mt-3 text-xl font-bold text-black dark:text-zinc-50 sm:mt-4 sm:text-2xl">
                     Faster Research
                   </div>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
                     Understand repositories in minutes instead of hours
                   </p>
                 </div>
@@ -491,16 +498,16 @@ Body:
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 py-24">
+      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 py-12 sm:py-16 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/50 via-purple-500/50 to-indigo-500/50"></div>
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-5xl font-bold text-white drop-shadow-2xl">
+          <h2 className="text-2xl font-bold text-white drop-shadow-2xl sm:text-3xl md:text-4xl lg:text-5xl">
             Ready to Get Started?
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl text-blue-100 drop-shadow-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-blue-100 drop-shadow-lg sm:mt-6 sm:text-lg md:text-xl">
             Join thousands of developers who are already using GitHub Summarizer to understand repositories faster.
           </p>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
             {user ? (
               <Link
                 href="/dashboards"
@@ -531,12 +538,19 @@ Body:
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-zinc-900">
+      <footer className="border-t border-zinc-200 bg-white py-8 dark:border-zinc-800 dark:bg-zinc-900 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div>
-              <div className="text-xl font-bold text-black dark:text-zinc-50">
-                🔍 GitHub Summarizer
+              <div className="flex items-center gap-2 text-xl font-bold text-black dark:text-zinc-50">
+                <Image
+                  src="/logo.svg"
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="h-7 w-7 flex-shrink-0"
+                />
+                GitHub Summarizer
               </div>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 AI-powered GitHub repository analysis
